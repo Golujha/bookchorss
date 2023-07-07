@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<header class="text-gray-600 body-font bg-teal-700 text-white sticky-top">
+    <div class="container p-2">
+
+        <nav class="md:ml-auto md:mr-auto flex flex-wrap text-base justify-start gap-6">
+            {% for data in generous %}
+            <a href="{% url 'generous' data.id %}" class="mr-5 text-white-600 hover:text-red-600 font-semibold">{{data.cat_title|capfirst}} </a>
+            {% endfor %}
+        </nav>
+
+    </div>
+</header>
+
+
+<img src="https://bc-img.s3.ap-south-1.amazonaws.com/web_banners/2023041068594.webp" class="w-full" alt="">
+
+
+
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-5 mx-auto">
+
+
+        <div class="flex flex-wrap ">
+            {% for data in create %}
+            <div class="xl:w-1/4 md:w-1/2 p-4">
+                <div class="bg-gray-100 p-6 rounded-lg ">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6 " style=" height: 260px;"
+                        src="{{data.image.url}}" alt="content">
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4" style="margin-left: 70px;">
+                        {{data.title}}</h2>
+                    <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">BY-{{data.author}}</h3>
+                    <p class="leading-relaxed text-base">{{data.price}} <del>{{data.discount_price}}</del></p>
+                    <div class="flex gap-3">
+                        <a href="{% url 'singlePost' data.id %}"
+                            class="bg-orange-600 text-white w-full py-2 rounded px-3">Buy Now</a>
+                        <a href="{% url 'singlePost' data.id %}"
+                            class="bg-green-600 text-white w-full py-2 rounded px-3">Add To Cart</a>
+
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
